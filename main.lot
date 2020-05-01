@@ -1,0 +1,22 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Listing --- Sample JSON drawing file\relax }}{23}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Drawing Entity --- Metadata\relax }}{24}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Drawing Entity --- Dataframe Structure\relax }}{24}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Edge Entity --- Encapsulated Data and Meta-information\relax }}{34}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces \textit {Drawing} features --- Statistical Analysis\relax }}{48}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces \textit {Edge} features --- Statistical Analysis\relax }}{49}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces \textit {Anomaly} features --- Statistical Analysis\relax }}{50}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces Classifier accuracy $P_{acc}$ --- trained with top $n=3$ features\relax }}{55}%
+\contentsline {table}{\numberline {7.2}{\ignorespaces Classifier accuracy $P_{acc}$ --- trained with top $n=30$ features\relax }}{55}%
+\contentsline {table}{\numberline {7.3}{\ignorespaces Classifier accuracy $P_{acc}$ --- trained with top $n=90$ features\relax }}{55}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {8.1}{\ignorespaces PD Instance Explanation --- Example\relax }}{63}%
+\contentsline {table}{\numberline {8.2}{\ignorespaces Healthy Control HC Instance Explanation --- Example\relax }}{64}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

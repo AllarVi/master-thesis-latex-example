@@ -1,0 +1,202 @@
+\begin{comment}
+
+    Behind the workings of lime lies the (big) assumption that every complex model is linear on a local scale. While this is not justified in the paper it is not difficult to convince yourself that this is generally sound — you usually expect two very similar observations to behave predictably even in a complex model. 
+    
+    lime then takes this assumption to its natural conclusion by asserting that it is possible to fit a simple model around a single observation that will mimic how the global model behaves at that locality. The simple model can then be used to explain the predictions of the more complex model locally.
+    
+    The general approach lime takes to achieving this goal is as follows:
+    
+    - For each prediction to explain, permute the observation n times.
+    - Let the complex model predict the outcome of all permuted observations.
+    - Calculate the distance from all permutations to the original observation.
+    - Convert the distance to a similarity score.
+    - Select m features best describing the complex model outcome from the permuted data.
+    - Fit a simple model to the permuted data, explaining the complex model outcome with the m - features from the permuted data weighted by its similarity to the original observation.
+    - Extract the feature weights from the simple model and use these as explanations for the complex models local behavior.
+    
+    It is clear from the above that there’s much wiggle-room in order to optimize the explanation. Chief among the choices that influence the quality of the explanation is how permutations are created, how permutation similarity is calculated, how, and how many, features are selected, and which model is used as the simple model. Some of these choices are hard-coded into lime, while others can be influenced by the user — all of them will be discussed below.
+    
+    
+    
+% By “explaining a prediction”, we mean presenting textual or visual artifacts that provide qualitative understanding of the relationship between the instance’s components (e.g. words in text, patches in an image) and the model’s prediction
+
+% In this case, an ex- planation is a small list of symptoms with relative weights – symptoms that either contribute to the prediction (in green) or are evidence against it (in red). Humans usually have prior knowledge about the application domain, which they can use to accept (trust) or reject a prediction if they understand the reasoning behind it.
+
+% An essential criterion for explanations is that they must be interpretable, i.e., provide qualitative understanding between the input variables and the response. 
+
+% Intuitively, an explanation is a local linear approximation of the model's behaviour. While the model may be very complex globally, it is easier to approximate it around the vicinity of a particular instance. While treating the model as a black box, we perturb the instance we want to explain and learn a sparse linear model around it, as an explanation. The figure below illustrates the intuition for this procedure. The model's decision function is represented by the blue/pink background, and is clearly nonlinear. The bright red cross is the instance being explained (let's call it X). We sample instances around X, and weight them according to their proximity to X (weight here is indicated by size). We then learn a linear model (dashed line) that approximates the model well in the vicinity of X, but not necessarily globally. For more information, read our paper, or take a look at this blog post.
+
+
+\end{comment}
+
+\section{Motivation}
+
+Outcome of the preceding phases of algorithm --- numerous binary classifier models, capable of differentiating Parkinson's disease patients PD from healthy control subjects HC with up to 91\% of accuracy. In theory, obtained classifier models may be integrated into decision support framework and used by clinicians for Parkinson's disease diagnosis.
+
+There exists a major problem with practical application of present method in hospitals. Main reason would be overall \textit{"black box"} nature of machine learning algorithms, such as neural networks, random forests or support vector machines SVM. Even if particular model offers high accuracy rate, it would not be considered as trustworthy by clinicians, primarily because of prediction making process is \textit{not traceable}. 
+
+It is worth mentioning, that limited amount of simple machine learning models offer some level of interpretability. For example, particular models of Decision Tree, Linear Classifier can be described by \textit{feature weights}. Recently became possible to interpret binary Random Forest classifier models with \textit{feature contribution method}, proposed by \citet*{palczewska2014interpreting} in 2014. 
+
+However interpretations of individual predictions were not feasible before. 
+
+\section{Methodology}
+
+\subsection{LIME}
+
+In 2016 \citet*{ribeiro2016should} came up with novel machine learning meta-algorithm, called "Local Interpretable Model-Agnostic Explanations" or \textit{LIME}, which is innovative explanation technique, that explains the predictions of \textit{any} classifier in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. This method was also extended to \textit{SP-LIME} algorithm, which yields representative and non-redundant set of predictions to provide higher overview of any machine learning model.
+
+\textit{LIME} algorithm was built around assumption, that any complex model is linear on local scale, namely --- pair of close datapoints should have predictable behaviour, even the complex model is non-linear, therefore it is feasible to fit linear model around particular datapoint to create local linear representation of the global non-linear model. Linear model then can be utilized to explain predictions of the complex model locally. In general, \textit{LIME} algorithm follows these main steps to explain global model $M$ individual prediction for datapoint $d$:
+
+\begin{easylist}[enumerate]
+
+    & From original datapoint $d$ to explain, create randomly permuted points $[d_1, d_2, ..d_n]$, obtain predictions for each of $[d_1,..d_n]$ from global model $M$ and assign labels.
+    
+    & Evaluate distances between $[d_1,..d_n]$ and original $d$
+    
+    % - Calculate the distance from all permutations to the original observation.
+    % - Convert the distance to a similarity score.
+    
+    & Choose $k$ features and fit simple linear model $M_{linear}$ using labelled points $[d_1,..d_n]$ and their distances to original datapoint $d$.
+    
+    % explain global model prediction with $k$ features from random points by significance, or by closeness to original datapoint $p$
+    % - Fit a simple model to the permuted data, explaining the complex model outcome with the m features from the permuted data weighted by its similarity to the original observation.
+    
+    & Obtain feature list $[f_1, ..f_m]$ with \textit{feature weights} from simple model $M_{linear}$, use them as explanation for datapoint $d$ prediction. 
+
+\end{easylist}
+
+Distance measuring, feature selection and model fitting from steps (2) and (3) are complex processes and may have multiple implementations and different strategies. Obtained \textit{explanation} is not faithful globally, but it is faithful locally around $d$. In context of LIME, \textit{explanation} --- is textual artifact, that provides understanding of the relationship between the datapoint $d$ features $[f_1, ..f_m]$ and particular model’s prediction.
+
+
+% With these, clinician can make an informed decision about whether to trust the model’s prediction or not.
+
+\subsection{LIME Integration}
+
+It was decided to apply \textit{LIME} to generate explanations for individual predictions of \textit{HC} and \textit{PD} datapoints from validation set and observe, how algorithm performs. \textit{LIME} has \textit{Python} implementation in form of $lime$ package, which was integrated effortlessly into existing project. 
+
+In order to obtain explanation for individual instance $d$, we create \textit{LimeTabularExplainer} object and execute $explain\_instance()$ method, while providing following input parameters:
+
+\begin{easylist}[itemize]
+
+& Particular classifier model $M$ object, which predicts class of the instance $d$
+& Related labelled drawings $[d1, ..d_n]$ from training set
+& Feature names $[f_1, ..f_m]$
+& Class labels $[PD, HC]$
+& Individual instance $d$ from validation set
+
+\end{easylist}
+
+Output is complex \textit{Explanation} object, which in general, contains prediction probability for each class $[PD, HC]$ and list of tuples $[(x_1, y_1), ..((x_m, y_m)]$, where $[x_1, ..x_m]$ --- feature names ordered by their numeric significance values $[y_1, ..y_m]$, which were calculated from particular feature $f_i$ weight inside linear model $M_{linear}$ --- local linear approximation of global model $M$. Algorithm is also capable of showing discretized ranges for every explained feature $f_i$ of the $d$ instance.
+
+% Positive numeric value of significance $y_i$ of the feature $f_i$ supports class prediction. Negative value, however supports rejection of prediction.  
+
+\section{Experimental Result}
+
+Following Table \ref{explanation1} and Table \ref{explanation2} demonstrate sample classification explanations for random instances of HC and PD, taken from validation dataset. Classifier model $M$ is \textit{Random Forest} with measured accuracy $P_{acc} = 0.88$, trained with $n=90$ features from \textit{mixed} feature class. To confirm validity of the explanation, actual feature value of the corresponding instance was added to \textit{LIME} output as a reference.
+
+\subsection{Explanation for PD instance}
+
+First explanation \textit{(Table \ref{explanation1})} confirms, that instance is PD with 71\% probability. Main reasons for such classification result, according to \textit{Random Forest} model:
+
+\begin{easylist}
+
+& \textit{Velocity} is lower than expected for edge with index 3
+& Increased number of \textit{pressure changes} for edges with indexes 6 and 14
+& \textit{Linear speed} for edges 5, 12, 22 is lower, than expected
+& \textit{Duration} for edge 14 is longer, than expected
+
+\end{easylist}
+
+
+\subsection{Explanation for HC instance}
+
+Second explanation \textit{(Table \ref{explanation2})} confirms, that instance is actually healthy control HC with 90\% probability. Primary reasons for such classification result, according to \textit{Random Forest} model:
+
+\begin{easylist}
+& High \textit{linear speed} for edges 5, 6, 10, 22
+& High \textit{average velocity} for edges 3, 10, 11, 15 
+& Number of \textit{pressure changes} in edges 6, 14 are low
+
+\end{easylist}
+
+\begin{table}[]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\multicolumn{3}{c}{\textit{Classifier Model} --- RandomForest, $n=90$ features}\\
+\midrule
+\multicolumn{3}{c}{\textit{Instance} PD-07 --- \textit{Prediction} PD (71\%) / Control (29\%)}\\
+\midrule
+\multicolumn{3}{c}{\textit{Prediction Explanations: Parkinson's Disease PD (71\%)}}\\
+Feature Explanation & Feature Actual & Significance \\
+\toprule
+ edge\_03\_velocity\_mean $\leq$ 9.07e+03 &  4.25e+03 &  0.061013 \\
+ edge\_14\_pressure\_nc $>$ 1.95e+01 &  2.80e+01 &  0.054542 \\
+ edge\_03\_acceleration\_mean $\leq$ 1.92e+08 &  7.28e+07 &  0.042965 \\
+ drawing\_slope\_mass $>$ 1.83e+05 &  3.21e+05 &  0.037471 \\
+ 1.65e+01 $<$ edge\_06\_pressure\_nc $\leq$ 1.90e+01 &  1.90e+01 &  0.034442 \\
+ edge\_03\_jerk\_mean $\leq$ 1.21e+13 &  3.43e+12 &  0.029171 \\
+ edge\_22\_speed $\leq$ 5.39e+01 &  3.90e+01 &  0.027016 \\
+ 1.62e+13 $<$ edge\_00\_jerk\_mean $\leq$ 2.76e+13 &  2.14e+13 &  0.018656 \\
+ 1.25e+00 $<$ edge\_00\_pressure\_mass $\leq$ 1.51e+00 &  1.45e+00 &  0.012146 \\
+ 5.32e+01 $<$ edge\_05\_speed $\leq$ 7.01e+01 &  5.85e+01 &  0.011786 \\
+ 6.27e+01 $<$ edge\_12\_speed $\leq$ 1.02e+02 &  1.00e+02 &  0.011575 \\
+ edge\_14\_duration $>$ 9.40e-01 &  1.62e+00 &  0.010385 \\
+ \midrule
+\multicolumn{3}{c}{\textit{Prediction Explanations: Healthy Control HC (29\%)}}\\
+Feature Explanation & Feature Actual & Significance \\
+\toprule
+ edge\_14\_velocity\_mean $\leq$ 7.31e+03 &  5.81e+03 & -0.012261 \\
+ edge\_14\_acceleration\_mean $\leq$ 1.43e+08 &  1.36e+08 & -0.012769 \\
+ 2.26e+08 $<$ edge\_07\_acceleration\_mean $\leq$ 3.20e+08 &  2.29e+08 & -0.013645 \\
+ 5.81e+03 $<$ edge\_10\_velocity\_mean $\leq$ 9.51e+03 &  7.19e+03 & -0.015295 \\
+ 6.81e+12 $<$ edge\_20\_jerk\_mean $\leq$ 1.32e+13 &  7.37e+12 & -0.023397 \\
+ 6.23e+01 $<$ edge\_10\_speed $\leq$ 1.16e+02 &  9.00e+01 & -0.025807 \\
+ 5.96e+03 $<$ edge\_15\_velocity\_mean $\leq$ 1.20e+04 &  9.29e+03 & -0.032646 \\
+ 7.28e+01 $<$ edge\_06\_speed $\leq$ 1.05e+02 &  7.65e+01 & -0.077155 \\
+\bottomrule
+\end{tabular}
+\caption{PD Instance Explanation --- Example}
+\label{explanation1}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\multicolumn{3}{c}{\textit{Classifier Model} --- RandomForest, $n=90$ features}\\
+\midrule
+\multicolumn{3}{c}{\textit{Instance} HC-01 --- \textit{Prediction} HC (90\%) / PD (10\%)}\\
+\midrule
+\multicolumn{3}{c}{\textit{Prediction Explanations: Healthy Control HC (90\%)}}\\
+Feature Explanation & Feature Actual & Significance \\
+\toprule
+ edge\_06\_speed $>$ 1.05e+02 &  2.67e+02 &  0.111788 \\
+ edge\_11\_velocity\_mean $>$ 1.45e+04 &  2.63e+04 &  0.074923 \\
+ edge\_15\_velocity\_mean $>$ 1.82e+04 &  2.23e+04 &  0.073401 \\
+ drawing\_slope\_mass $\leq$ 1.14e+05 &  8.27e+04 &  0.059881 \\
+ edge\_03\_velocity\_mean $>$ 1.56e+04 &  3.79e+04 &  0.057738 \\
+ edge\_06\_pressure\_nc $\leq$ 1.05e+01 &  5.00e+00 &  0.057620 \\
+ edge\_14\_pressure\_nc $\leq$ 1.02e+01 &  7.00e+00 &  0.037617 \\
+ edge\_03\_jerk\_mean $>$ 2.73e+13 &  7.69e+13 &  0.032639 \\
+ edge\_10\_speed $>$ 1.16e+02 &  2.60e+02 &  0.031768 \\
+ edge\_22\_speed $>$ 1.21e+02 &  2.67e+02 &  0.030603 \\
+ edge\_21\_acceleration\_nc $\leq$ 6.75e+00 &  4.00e+00 &  0.026311 \\
+ edge\_05\_speed $>$ 9.92e+01 &  2.46e+02 &  0.024375 \\
+ edge\_10\_velocity\_mean $>$ 1.50e+04 &  3.28e+04 &  0.023728 \\
+ edge\_03\_acceleration\_mean $>$ 3.54e+08 &  8.96e+08 &  0.021507 \\
+ edge\_14\_duration $\leq$ 4.20e-01 &  3.30e-01 &  0.018153 \\
+ \midrule
+\multicolumn{3}{c}{\textit{Prediction Explanations: Parkinson's Disease PD (10\%)}}\\
+Feature Explanation & Feature Actual & Significance \\
+\toprule
+ edge\_00\_jerk\_mean $>$ 2.76e+13 &  3.54e+13 & -0.021943 \\
+ edge\_01\_jerk\_mean $>$ 1.70e+13 &  4.17e+13 & -0.026075 \\
+ edge\_14\_velocity\_mean $>$ 1.29e+04 &  2.30e+04 & -0.027546 \\
+ edge\_14\_acceleration\_mean $>$ 2.92e+08 &  6.07e+08 & -0.037125 \\
+ edge\_20\_jerk\_mean $>$ 2.73e+13 &  7.93e+13 & -0.066437 \\
+\bottomrule
+\end{tabular}
+\caption{Healthy Control HC Instance Explanation --- Example}
+\label{explanation2}
+\end{table}

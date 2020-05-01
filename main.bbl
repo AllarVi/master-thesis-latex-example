@@ -1,0 +1,299 @@
+\begin{thebibliography}{40}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Moustafa et~al.(2016)Moustafa, Chakravarthy, Phillips, Gupta, Keri,
+  Polner, Frank, and Jahanshahi]{moustafa2016motor}
+Ahmed~A Moustafa, Srinivasa Chakravarthy, Joseph~R Phillips, Ankur Gupta,
+  Szabolcs Keri, Bertalan Polner, Michael~J Frank, and Marjan Jahanshahi.
+\newblock Motor symptoms in parkinson’s disease: A unified framework.
+\newblock \emph{Neuroscience \& Biobehavioral Reviews}, 68:\penalty0 727--740,
+  2016.
+
+\bibitem[Smits et~al.(2014)Smits, Tolonen, Cluitmans, van Gils, Conway,
+  Zietsma, Leenders, and Maurits]{smits2014standardized}
+Esther~J Smits, Antti~J Tolonen, Luc Cluitmans, Mark van Gils, Bernard~A
+  Conway, Rutger~C Zietsma, Klaus~L Leenders, and Natasha~M Maurits.
+\newblock Standardized handwriting to assess bradykinesia, micrographia and
+  tremor in parkinson's disease.
+\newblock \emph{PloS one}, 9\penalty0 (5):\penalty0 e97614, 2014.
+
+\bibitem[Shukla et~al.(2012)Shukla, Ounpraseuth, Okun, Gray, Schwankhaus, and
+  Metzer]{shukla2012micrographia}
+Aparna~Wagle Shukla, Songthip Ounpraseuth, Michael~S Okun, Vickie Gray, John
+  Schwankhaus, and Walter~Steven Metzer.
+\newblock Micrographia and related deficits in parkinson9s disease: a
+  cross-sectional study.
+\newblock \emph{BMJ open}, 2\penalty0 (3):\penalty0 e000628, 2012.
+
+\bibitem[Drot{\'a}r et~al.(2016)Drot{\'a}r, Mekyska, Rektorov{\'a},
+  Masarov{\'a}, Sm{\'e}kal, and Faundez-Zanuy]{drotar2016evaluation}
+Peter Drot{\'a}r, Ji{\v{r}}{\'\i} Mekyska, Irena Rektorov{\'a}, Lucia
+  Masarov{\'a}, Zden{\v{e}}k Sm{\'e}kal, and Marcos Faundez-Zanuy.
+\newblock Evaluation of handwriting kinematics and pressure for differential
+  diagnosis of parkinson's disease.
+\newblock \emph{Artificial intelligence in Medicine}, 67:\penalty0 39--46,
+  2016.
+
+\bibitem[Nackaerts et~al.(2017)Nackaerts, Heremans, Smits-Engelsman, Broeder,
+  Vandenberghe, Bergmans, and Nieuwboer]{nackaerts2017validity}
+Evelien Nackaerts, Elke Heremans, Bouwien~CM Smits-Engelsman, Sanne Broeder,
+  Wim Vandenberghe, Bruno Bergmans, and Alice Nieuwboer.
+\newblock Validity and reliability of a new tool to evaluate handwriting
+  difficulties in parkinson’s disease.
+\newblock \emph{PloS one}, 12\penalty0 (3):\penalty0 e0173157, 2017.
+
+\bibitem[Letanneux et~al.(2014)Letanneux, Danna, Velay, Viallet, and
+  Pinto]{letanneux2014micrographia}
+Alban Letanneux, Jeremy Danna, Jean-Luc Velay, Fran{\c{c}}ois Viallet, and
+  Serge Pinto.
+\newblock From micrographia to parkinson's disease dysgraphia.
+\newblock \emph{Movement Disorders}, 29\penalty0 (12):\penalty0 1467--1475,
+  2014.
+
+\bibitem[Drot{\'a}r et~al.(2015{\natexlab{a}})Drot{\'a}r, Mekyska,
+  Rektorov{\'a}, Masarov{\'a}, Sm{\'e}kal, and
+  Faundez-Zanuy]{drotar2015decision}
+Peter Drot{\'a}r, Ji{\v{r}}{\'\i} Mekyska, Irena Rektorov{\'a}, Lucia
+  Masarov{\'a}, Zden{\v{e}}k Sm{\'e}kal, and Marcos Faundez-Zanuy.
+\newblock Decision support framework for parkinson’s disease based on novel
+  handwriting markers.
+\newblock \emph{IEEE Transactions on Neural Systems and Rehabilitation
+  Engineering}, 23\penalty0 (3):\penalty0 508--516, 2015{\natexlab{a}}.
+
+\bibitem[Golden et~al.(1978)Golden, Hammeke, and Purisch]{golden1978diagnostic}
+Charles~J Golden, Thomas~A Hammeke, and Arnold~D Purisch.
+\newblock Diagnostic validity of a standardized neuropsychological battery
+  derived from luria's neuropsychological tests.
+\newblock \emph{Journal of consulting and clinical psychology}, 46\penalty0
+  (6):\penalty0 1258, 1978.
+
+\bibitem[N{\~o}mm et~al.(2016{\natexlab{a}})N{\~o}mm, Toomela, Kozhenkina, and
+  Toomsoo]{nomm2016quantitative}
+Sven N{\~o}mm, Aaro Toomela, Julia Kozhenkina, and Toomas Toomsoo.
+\newblock Quantitative analysis in the digital luria's alternating series
+  tests.
+\newblock In \emph{Control, Automation, Robotics and Vision (ICARCV), 2016 14th
+  International Conference on}, pages 1--6. IEEE, 2016{\natexlab{a}}.
+
+\bibitem[Pinto and Velay(2015)]{pinto2015handwriting}
+Serge Pinto and Jean-Luc Velay.
+\newblock Handwriting as a marker for pd progression: a shift in paradigm,
+  2015.
+
+\bibitem[Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin]{ribeiro2016should}
+Marco~Tulio Ribeiro, Sameer Singh, and Carlos Guestrin.
+\newblock Why should i trust you?: Explaining the predictions of any
+  classifier.
+\newblock In \emph{Proceedings of the 22nd ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, pages 1135--1144. ACM, 2016.
+
+\bibitem[Luriaa(1995)]{luria1995higher}
+A.~R. Luriaa.
+\newblock \emph{Higher Cortical Functions in Man}.
+\newblock Springer, 1995.
+
+\bibitem[Rosenblum et~al.(2013)Rosenblum, Samuel, Zlotnik, Erikh, and
+  Schlesinger]{rosenblum2013handwriting}
+Sara Rosenblum, Margalit Samuel, Sharon Zlotnik, Ilana Erikh, and Ilana
+  Schlesinger.
+\newblock Handwriting as an objective tool for parkinson’s disease diagnosis.
+\newblock \emph{Journal of neurology}, 260\penalty0 (9):\penalty0 2357--2361,
+  2013.
+
+\bibitem[Kozhenkina(2016)]{kozhenkina2016luria}
+Julia Kozhenkina.
+\newblock Quantitative analysis of the kinematic features for the luria’s
+  alternating series test.
+\newblock Master thesis, Tallinn University of Technology, 2016.
+
+\bibitem[Mašarov(2017)]{masarov2017clock}
+Ilja Mašarov.
+\newblock Digital clock drawing test implementation and analysis.
+\newblock Master thesis, Tallinn University of Technology, 2017.
+
+\bibitem[San~Luciano et~al.(2016)San~Luciano, Wang, Ortega, Yu, Boschung,
+  Soto-Valencia, Bressman, Lipton, Pullman, and
+  Saunders-Pullman]{san2016digitized}
+Marta San~Luciano, Cuiling Wang, Roberto~A Ortega, Qiping Yu, Sarah Boschung,
+  Jeannie Soto-Valencia, Susan~B Bressman, Richard~B Lipton, Seth Pullman, and
+  Rachel Saunders-Pullman.
+\newblock Digitized spiral drawing: A possible biomarker for early
+  parkinson’s disease.
+\newblock \emph{PloS one}, 11\penalty0 (10):\penalty0 e0162799, 2016.
+
+\bibitem[Pereira et~al.(2016)Pereira, Weber, Hook, Rosa, and
+  Papa]{pereira2016deep}
+Clayton~R Pereira, Silke~AT Weber, Christian Hook, Gustavo~H Rosa, and
+  Jo{\~a}o~P Papa.
+\newblock Deep learning-aided parkinson's disease diagnosis from handwritten
+  dynamics.
+\newblock In \emph{Graphics, Patterns and Images (SIBGRAPI), 2016 29th SIBGRAPI
+  Conference on}, pages 340--346. IEEE, 2016.
+
+\bibitem[Aghanavesi et~al.(2017)Aghanavesi, Nyholm, Senek, Bergquist, and
+  Memedi]{aghanavesi2017smartphone}
+Somayeh Aghanavesi, Dag Nyholm, Marina Senek, Filip Bergquist, and Mevludin
+  Memedi.
+\newblock A smartphone-based system to quantify dexterity in parkinson's
+  disease patients.
+\newblock \emph{Informatics in Medicine Unlocked}, 9:\penalty0 11--17, 2017.
+
+\bibitem[Van~Gemmert et~al.(2001)Van~Gemmert, Teulings, and
+  Stelmach]{van2001parkinsonian}
+Arend~WA Van~Gemmert, Hans-Leo Teulings, and George~E Stelmach.
+\newblock Parkinsonian patients reduce their stroke size with increased
+  processing demands.
+\newblock \emph{Brain and cognition}, 47\penalty0 (3):\penalty0 504--512, 2001.
+
+\bibitem[Sisti et~al.(2017)Sisti, Christophe, Seville, Garton, Gupta, Bandin,
+  Yu, and Pullman]{sisti2017computerized}
+Jonathan~A Sisti, Brandon Christophe, Audrey~Rakovich Seville, Andrew~LA
+  Garton, Vivek~P Gupta, Alexander~J Bandin, Qiping Yu, and Seth~L Pullman.
+\newblock Computerized spiral analysis using the ipad.
+\newblock \emph{Journal of neuroscience methods}, 275:\penalty0 50--54, 2017.
+
+\bibitem[Drot{\'a}r et~al.(2013)Drot{\'a}r, Mekyska, Rektorov{\'a},
+  Masarov{\'a}, Sm{\'e}kal, and Faundez-Zanuy]{drotar2013new}
+Peter Drot{\'a}r, Jiri Mekyska, Irena Rektorov{\'a}, Lucia Masarov{\'a}, Zdenek
+  Sm{\'e}kal, and Marcos Faundez-Zanuy.
+\newblock A new modality for quantitative evaluation of parkinson's disease:
+  In-air movement.
+\newblock In \emph{Bioinformatics and Bioengineering (BIBE), 2013 IEEE 13th
+  International Conference on}, pages 1--4. IEEE, 2013.
+
+\bibitem[Raudmann et~al.(2014)Raudmann, Taba, and
+  Medijainen]{raudmann2014handwriting}
+Mari Raudmann, Pille Taba, and Kadri Medijainen.
+\newblock Handwriting speed and size in individuals with parkinson’s disease
+  compared to healthy controls: the possible effect of cueing.
+\newblock \emph{Acta Kinesiologiae Universitatis Tartuensis}, 20:\penalty0
+  40--47, 2014.
+
+\bibitem[Drot{\'a}r et~al.(2015{\natexlab{b}})Drot{\'a}r, Mekyska, Sm{\'e}kal,
+  Rektorov{\'a}, Masarov{\'a}, and Faundez-Zanuy]{drotar2015contribution}
+Peter Drot{\'a}r, Ji{\v{r}}{\'\i} Mekyska, Zden{\v{e}}k Sm{\'e}kal, Irena
+  Rektorov{\'a}, Lucia Masarov{\'a}, and Marcos Faundez-Zanuy.
+\newblock Contribution of different handwriting modalities to differential
+  diagnosis of parkinson's disease.
+\newblock In \emph{Medical Measurements and Applications (MeMeA), 2015 IEEE
+  International Symposium on}, pages 344--348. IEEE, 2015{\natexlab{b}}.
+
+\bibitem[N{\~o}mm et~al.(2016{\natexlab{b}})N{\~o}mm, Bard{\~o}{\v{s}},
+  Ma{\v{s}}arov, Kozhenkina, Toomela, and Toomsoo]{nomm2016recognition}
+Sven N{\~o}mm, Konstantin Bard{\~o}{\v{s}}, Ilja Ma{\v{s}}arov, Julia
+  Kozhenkina, Aaro Toomela, and Toomas Toomsoo.
+\newblock Recognition and analysis of the contours drawn during the
+  poppelreuter's test.
+\newblock In \emph{Machine Learning and Applications (ICMLA), 2016 15th IEEE
+  International Conference on}, pages 170--175. IEEE, 2016{\natexlab{b}}.
+
+\bibitem[Sala et~al.(1995)Sala, Laiacona, Trivelli, and
+  Spinnler]{sala1995poppelreuter}
+Sergio~Della Sala, Marcella Laiacona, Cristina Trivelli, and Hans Spinnler.
+\newblock Poppelreuter-ghent's overlapping figures test: its sensitivity to
+  age, and its clinical use.
+\newblock \emph{Archives of Clinical Neuropsychology}, 10\penalty0
+  (6):\penalty0 511--534, 1995.
+
+\bibitem[Korner et~al.(2012)Korner, Lauritzen, Nilsson, Lolk, and
+  Christensen]{korner2012simple}
+Ejnar~Alex Korner, Lise Lauritzen, Flemming~M{\o}rkeberg Nilsson, Annette Lolk,
+  and Peder Christensen.
+\newblock Simple scoring of the clock-drawing test for dementia screening.
+\newblock \emph{Dan Med J}, 59\penalty0 (1):\penalty0 A4365, 2012.
+
+\bibitem[Souillard-Mandar et~al.(2016)Souillard-Mandar, Davis, Rudin, Au,
+  Libon, Swenson, Price, Lamar, and Penney]{souillard2016learning}
+William Souillard-Mandar, Randall Davis, Cynthia Rudin, Rhoda Au, David~J
+  Libon, Rodney Swenson, Catherine~C Price, Melissa Lamar, and Dana~L Penney.
+\newblock Learning classification models of cognitive conditions from subtle
+  behaviors in the digital clock drawing test.
+\newblock \emph{Machine learning}, 102\penalty0 (3):\penalty0 393--441, 2016.
+
+\bibitem[Brodaty and Moore(1997)]{brodaty1997clock}
+Henry Brodaty and Cressida~M Moore.
+\newblock The clock drawing test for dementia of the alzheimer's type: A
+  comparison of three scoring methods in a memory disorders clinic.
+\newblock \emph{International journal of geriatric psychiatry}, 12\penalty0
+  (6):\penalty0 619--627, 1997.
+
+\bibitem[Zham et~al.(2017)Zham, Kumar, Dabnichki, Poosapadi~Arjunan, and
+  Raghav]{zham2017distinguishing}
+Poonam Zham, Dinesh~K Kumar, Peter Dabnichki, Sridhar Poosapadi~Arjunan, and
+  Sanjay Raghav.
+\newblock Distinguishing different stages of parkinson’s disease using
+  composite index of speed and pen-pressure of sketching a spiral.
+\newblock \emph{Frontiers in Neurology}, 8:\penalty0 435, 2017.
+
+\bibitem[Palczewska et~al.(2014)Palczewska, Palczewski, Robinson, and
+  Neagu]{palczewska2014interpreting}
+Anna Palczewska, Jan Palczewski, Richard~Marchese Robinson, and Daniel Neagu.
+\newblock Interpreting random forest classification models using a feature
+  contribution method.
+\newblock In \emph{Integration of reusable systems}, pages 193--218. Springer,
+  2014.
+
+\bibitem[Shi et~al.(1994)]{shi1994good}
+Jianbo Shi et~al.
+\newblock Good features to track.
+\newblock In \emph{Computer Vision and Pattern Recognition, 1994. Proceedings
+  CVPR'94., 1994 IEEE Computer Society Conference on}, pages 593--600. IEEE,
+  1994.
+
+\bibitem[Cheng(1995)]{cheng1995mean}
+Yizong Cheng.
+\newblock Mean shift, mode seeking, and clustering.
+\newblock \emph{IEEE transactions on pattern analysis and machine
+  intelligence}, 17\penalty0 (8):\penalty0 790--799, 1995.
+
+\bibitem[Ester et~al.(1996)Ester, Kriegel, Sander, and Xu]{ester1996density}
+Martin Ester, Hans-Peter Kriegel, J{\"o}rg Sander, and Xiaowei Xu.
+\newblock Density-based spatial clustering of applications with noise.
+\newblock In \emph{Int. Conf. Knowledge Discovery and Data Mining}, volume 240,
+  1996.
+
+\bibitem[Harris and Stephens(1988)]{harris1988combined}
+Chris Harris and Mike Stephens.
+\newblock A combined corner and edge detector.
+\newblock In \emph{Alvey vision conference}, volume~15, pages 10--5244.
+  Citeseer, 1988.
+
+\bibitem[Chandola et~al.(2009)Chandola, Banerjee, and
+  Kumar]{chandola2009anomaly}
+Varun Chandola, Arindam Banerjee, and Vipin Kumar.
+\newblock Anomaly detection: A survey.
+\newblock \emph{ACM computing surveys (CSUR)}, 41\penalty0 (3):\penalty0 15,
+  2009.
+
+\bibitem[Aggarwal(2015)]{aggarwal2015data}
+Charu~C Aggarwal.
+\newblock \emph{Data mining: the textbook}.
+\newblock Springer, 2015.
+
+\bibitem[Duda et~al.(2012)Duda, Hart, and Stork]{duda2012pattern}
+Richard~O Duda, Peter~E Hart, and David~G Stork.
+\newblock \emph{Pattern classification}.
+\newblock John Wiley \& Sons, 2012.
+
+\bibitem[Ho(1995)]{ho1995random}
+Tin~Kam Ho.
+\newblock Random decision forests.
+\newblock In \emph{Document analysis and recognition, 1995., proceedings of the
+  third international conference on}, volume~1, pages 278--282. IEEE, 1995.
+
+\bibitem[Schapire and Freund(2012)]{schapire2012boosting}
+Robert~E Schapire and Yoav Freund.
+\newblock \emph{Boosting: Foundations and algorithms}.
+\newblock MIT press, 2012.
+
+\bibitem[Li et~al.(2018)Li, Li, Cook, Zhu, and Gao]{li2018independently}
+Shuai Li, Wanqing Li, Chris Cook, Ce~Zhu, and Yanbo Gao.
+\newblock Independently recurrent neural network (indrnn): Building a longer
+  and deeper rnn.
+\newblock \emph{arXiv preprint arXiv:1803.04831}, 2018.
+
+\end{thebibliography}

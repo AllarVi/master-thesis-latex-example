@@ -1,0 +1,84 @@
+\section{Related work}
+
+
+% 
+% Background
+% 
+
+% Parkinson's disease (PD) is very complex neurodegenerative disorder which mostly affects human motions. Patients demonstrate variety of symptoms such as tremor, rigidity and slowness in movements(bradykinesia) \cite{moustafa2016motor, smits2014standardized, shukla2012micrographia, drotar2016evaluation}. Handwriting and drawing processes are complex fine motor activities, which require precise coordination of many muscles, hence these processes are vulnerable among PD patients. Recent studies\cite{nackaerts2017validity, letanneux2014micrographia, drotar2015decision} suggest drawing and handwriting analysis as a biomarker for PD diagnosis. 
+
+According to vast majority of research papers, most common Parkinson's disease specific handwriting and drawing impairment is "micrographia" \cite{shukla2012micrographia, van2001parkinsonian}. Which can be described as abnormal reduction in writing amplitude. Some authors \cite{letanneux2014micrographia, pinto2015handwriting} even propose two types of micrographia. "Consistent" is uniform reduction in letter size, compared to writing before PD was diagnosed. Another type is "progressive" or in other words --- inability to sustain normal size letters for some number of consecutive characters. Micrographia is easy to detect, since researchers deal with visible product of handwriting and size of letters and drawn objects can be assessed effortlessly, but does size is most relevant feature of PD handwriting? 
+
+With recent development of touch screens and tablets, researchers were able to accurately measure pen coordinates along with time, which gave possibility to distinguish new kinematic features of handwriting such as speed, duration, velocity, jerk, fluency. Same studies propose totally new term - "dysgraphya" \cite{letanneux2014micrographia} (from prefix "dys" in medical terminology - "impaired" or "disordered"), which easily describes motor aspects of the disease: tremor, akinesia (absence of power in movements), rigidity and slowness and their combinations with kinematic features.
+
+% 
+% Data acquisition
+% 
+
+Overall, from data acquisition methodology perspective, we can divide groups of researches into following main clusters. Graphic tablets (mostly preferred Intuos 4M Wacom), which can offer high precision tracking, 100Hz refresh rate also ability to record pressure. Recent studies \cite{sisti2017computerized, masarov2017clock} successfully adopt \textit{iPad} touch screen with \textit{Apple Pencil} stylus and prove it more than capable of capturing drawing data precisely. Also it's worth mentioning, that \textit{iPad} technology brings two novel measures, such as altitude and azimuth angles \cite{masarov2017clock} of the \textit{Apple Pencil}, which in theory, may give more useful features describing PD drawings. As for Wacom tablets - they offer exclusive possibility of tracking in-air movements of the pen, allowing to record data between strokes \cite{drotar2013new}.  \citet{aghanavesi2017smartphone} even utilizes common smartphone screen for tapping and spiral drawing tests and successfully extract kinematic features, which contain relevant symptom information for detecting and assessing PD dexterity.
+
+Also, we shouldn't forget forget common "pen and pencil" tests. Most of the studies in the past were utilizing such method really well. In recent studies \citet{raudmann2014handwriting} uses pen and paper tests for writing simple and more complex sentences to investigate how PD handwriting alter from healthy controls (HC). Even multiple paper types, such as plain, horizontal or grid lined were analyzed. And research confirms, that writing of PD patients certainly differs from HC. Mainly micrographia and speed reduction were observed. As for different paper types - micrographia was less obvious, when patients performed test on lined paper, however writing speed didn't significantly improve.
+
+
+% 
+% Test types
+% 
+
+As from test methodology perspective we can observe some variety of drawing tasks. \citet*{smits2014standardized} proposed set of standardized tasks, which include drawing of circle, star, spiral and writing of sentence and character sequence "elelel".
+
+\citet*{drotar2015decision} conducted various researches \cite{drotar2013new, drotar2016evaluation, drotar2015contribution} using set of handwriting tasks, which consists of single letters, bi-grams, tri-grams, single words, sentence and Archimedean spiral.
+
+\citet{letanneux2014micrographia} also suggests, while choosing methodology, some certain aspects should be taken into consideration. The aim of the drawing tests are to focus on very low level of motor functions, writing some complicated sentences and unfamiliar words, also drawing complex shapes should be avoided, since it implies cognitive process. 
+
+% \citet{nomm2016quantitative} investigates kinematic parameters of Luria's tests, which consist of a number of different drawing exercises, requiring different complexity of the motion planning. This allows to differentiate impairments on the different levels related to motion planning and execution. 
+\citet{nomm2016recognition} proposes digitalized version of "Poppelreuter's overlapping figures test", which was used in psychology and neurology for several decades to assess visual perceptual cortex function \cite{sala1995poppelreuter}.
+
+\citet{nackaerts2017validity} introduced "Systematic Screening of Handwriting Difficulties" test (SOS-test), where patients were tested two times within month period and were asked to copy as much as possible of a text within 5 minutes with the instruction to write as neatly and quickly as in daily life.
+
+\citet{korner2012simple, souillard2016learning, brodaty1997clock} investigate CDT or "Clock Drawing Test", where participants are asked to draw the face of clock, mark in the hours and then draw the hands to indicate a specified time. CDT had proven its clinical validity of as a screening instrument for cognitive disorders, such as Alzheimer and Parkinson's disease or dementia and even recommended in Denmark \cite{korner2012simple} as screening method for individuals applying for an extension of their driving licence after their 70th birthday.
+
+Geometric and abstract shapes \cite{nomm2016recognition}, including spiral \cite{san2016digitized} and Luria patterns \cite{nomm2016quantitative} are superb source of kinematic features, which help to asses bradykinesia and tremor and overall dysgraphya. With sentence and character sequence writing micrographia-related features can easily be produced \cite{smits2014standardized, nackaerts2017validity}. 
+
+% 
+% Features
+% 
+
+Some research overviews performed by \citet{pinto2015handwriting, letanneux2014micrographia} confirm, that majority of present studies distinguish most important features for PD handwriting as size, duration, speed and writing fluency (fluctuations in velocity, acceleration and jerk). Features, not related with micrographia are often call kinematic features.
+
+Nonetheless we can meet some other feature types in various researches. \citet{drotar2016evaluation} proposes to utilize pressure measurements of the Wacom tablet, which were analyzed along with kinematic features, such as speed, duration and acceleration and showed significant discrimination power. \citet{drotar2013new} also successfully adopted in-air measurements of the Wacom tablet pen, since it allows recording up to 10mm height, analyzing patients movements between individual strokes. Also, some very recent work \cite{masarov2017clock} takes advantage of novel azimuth and latitude angles of iPad pencil for CDT test.
+
+\citet*{zham2017distinguishing} introduce "Composite Index of Speed and Pen-Pressure" or CISP and analyze its correlation with UPDRS (The Unified Parkinson's Disease rating scale) and shows, that CISP of spiral drawing is indeed strongly correlates with UPDRS. 
+
+% 
+% Link with recent works
+% 
+
+It is really important to stress, that our thesis is a part of bigger research series in Tallinn University of Technology, which investigates human handwriting and drawing. Previous works include: "Quantitative analysis of the kinematic features for the Luria’s alternating series test"\cite{nomm2016quantitative, kozhenkina2016luria} and "Digital Clock Drawing Test Implementation and Analysis"\cite{masarov2017clock}
+
+First work conducted by \citet{kozhenkina2016luria} is clearly a foundation for next studies. Thesis introduces first prototype of application for handwriting and drawing recording. Drawing data was acquired, and kinematic features were generated, quantitative analysis was performed to distinguish significant features, which separate healthy individuals from PD patients. Similarly, \citet{masarov2017clock} introduces second prototype of application for recording another "Clock Drawing Test". Same approach was used and thesis outcome was also quantitative analysis and subset of statistically significant features extracted from drawing data. The main issue with aforementioned studies is that they miss essential part and don't offer any machine learning classifiers, which capable of distinguishing between healthy controls and Parkinson's disease patients. Therefore proposed solutions cannot be adopted by clinicians. 
+
+% 
+% Interpretation of black-box models
+% 
+
+We can observe, that vast majority of researches produce and analyze features extracted from drawing data and most of them perform statistical quantitative analysis of each single feature. The problem with such approach - single features have low correlation coefficient with UPDRS or don't provide high discrimination power. To utilize multiple features at once and possibly find hidden relations between them, machine learning models come to the rescue.
+
+Only some of recent researches \cite{aghanavesi2017smartphone, pereira2016deep, nomm2016recognition} experiment with machine learning models and classify groups of individuals into PD or HC categories. For example \citet{drotar2016evaluation} achieved 81,3\% classification accuracy using support vector machine SVM model, combining pressure and kinematic features with high discrimination power. The problem with current approach is that medical doctors cannot really utilize the above studies mainly because of the black-box nature of common machine learning models, such as neural networks NN, random forests RF or support vector machines SVM, even if they offer high accuracy rate. 
+
+To modify overall tendency of the medical community not to trust machine learning systems, we should somehow provide traceability of each individual classification result or prediction, even if our models offer high classification accuracy. In recent studies, \citet*{palczewska2014interpreting} propose method for calculation of feature contributions for random forest RF models. It also allows for the determination of the influence of each feature on the model prediction for an individual prediction.
+
+\citet*{ribeiro2016should} offer novel methodology, called "Local Interpretable Model-Agnostic Explanations" or LIME, which is innovative explanation technique that explains the predictions of any classifier in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. 
+
+% Lime
+
+% Despite widespread adoption, machine learning models remain mostly black boxes. Understanding the reasons behind predictions is, however, quite important in assessing trust, which is fundamental if one plans to take action based on a prediction, or when choosing whether to deploy a new model. Such understanding also provides insights into the model, which can be used to transform an untrustworthy model or prediction into a trustworthy one.
+
+% In this work, we propose LIME, a novel explanation technique that explains the predictions of any classifier in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. We also propose a method to explain models by presenting representative individual predictions and their explanations in a non-redundant way, framing the task as a submodular optimization problem. We demonstrate the flexibility of these methods by explaining different models for text (e.g. random forests) and image classification (e.g. neural networks). We show the utility of explanations via novel experiments, both simulated and with human subjects, on various scenarios that require trust: deciding if one should trust a prediction, choosing between models, improving an untrustworthy classifier, and identifying why a classifier should not be trusted.
+
+% In this paper, we argued that trust is crucial for effective human interaction with machine learning systems, and that explaining individual predictions is important in assessing trust. We proposed LIME, a modular and extensible ap- proach to faithfully explain the predictions of any model in an interpretable manner. We also introduced SP-LIME, a method to select representative and non-redundant predictions, providing a global view of the model to users. Our experiments demonstrated that explanations are useful for a variety of models in trust-related tasks in the text and image domains, with both expert and non-expert users: deciding between models, assessing trust, improving untrustworthy models, and getting insights into predictions.
+
+
+
+% RF
+
+% Model interpretation is one of the key aspects of the model evaluation process. The explanation of the relationship between model variables and outputs is relatively easy for statistical models, such as linear regressions, thanks to the availability of model parameters and their statistical signif- icance. For “black box” models, such as random forest, this information is hidden inside the model structure. This work presents an approach for computing feature contributions for random forest classification models. It allows for the determination of the influence of each variable on the model prediction for an individual instance. By analysing feature contributions for a training dataset, the most significant variables can be determined and their typical contribution towards predictions made for individual classes, i.e., class-specific feature contribution ”patterns”, are discovered. These patterns represent a standard behaviour of the model and allow for an additional as- sessment of the model reliability for a new data. Interpretation of feature contributions for two UCI benchmark datasets shows the potential of the proposed methodology. The robustness of results is demonstrated through an extensive analysis of feature contributions calculated for a large number of generated random forest models.

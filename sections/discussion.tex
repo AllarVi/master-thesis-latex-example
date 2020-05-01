@@ -1,0 +1,106 @@
+
+\begin{comment}
+
+Possible improvements:
+
+Explaining individual predictions. A model predicts that a patient has PD, and LIME highlights the features extracted from pattern with significance measures and actual value, that led to the prediction. With these, clinician is capable of making informed decision about whether to trust the model’s prediction.
+
+
+% The problems addressed in the current thesis were supported by conducting testing with real patients, but small amount of the subjects makes this a pilot research.
+
+% Not many handwriting features yielded the desired distinctiveness, but a usable subset was discovered. 
+
+% The analysis of the results proved that currently employed method has its flaws.
+
+% The quantitative analysis employed for the purpose of the current work was limited to statistical method of evaluation,
+
+% At the moment, it is obvious that currently used methodology is viable and is worth to be investigated further
+
+% The testing results of the current study showed that the compared populations (PDs and healthy controls) most likely to have certain similarities
+
+Phrases: 
+
+% improvement ideas
+% possible drawbacks
+% And this work clearly indicates that
+% should be continued
+% As it was mentioned in the section
+% Another limitation of presented implementation
+% Yet another drawback of current implementation
+% As it was also discussed, ...
+% there are several drawbacks of using ...
+% It should be possible to greatly improve stroke classification
+% One of the main challenges in using the machine learning...
+% Even though... is not completely finished and has a lot of open issues, it is still can be used 
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% Results were confirmed by Fisher score and two-sample t-test.
+% Overall we are pretty happy with significance of the extracted features. Edge related, kinematic type features derived from logical segments of the pattern performed best. It was validated by statistical analysis and confirmed with performance of generated classifier. 
+% Geometry features along with pressure, altitude, latitude angle of stylus demonstrated low significance. Best non-kinematic feature pressure nc also received high Fisher score. These features stand for total number of changes in pressure during drawing test, and can, in theory, represent tremor — one of the symptoms of Parkinson’s disease.
+
+% By achieving highest average classification accuracy around 91\% for Random Forest model, trained with $n=30$ top features, we accomplished primary thesis goal.
+
+\end{comment}
+
+% Overall we conducted detailed analysis of patterns draw during Luria's alternating series tests. During implementation, we proposed novel solution for drawing patterns clustering, extracted sequences of features, generated anomalies 
+
+Overall, primary objectives of present thesis were met. We conducted detailed analysis of patterns drawn during Luria's alternating series tests. Analysis was based on data collected from 17 real patients with approved Parkinson's disease diagnosis and 17 healthy control subjects within same age group. Main outcome of the analysis is machine learning classifier, capable of differentiation Parkinson’s disease patients from healthy controls, providing prediction performance around 91\%. We also integrated technique for explaining individual predictions of obtained classifier based on ”Local Interpretable Model-Agnostic Explanations” novel meta-algorithm. 
+
+Proposed solution is complex multilevel process with several dependent phases. During each phase we experienced certain challenges. Some design decision exceeded our expectations, few on the other hand, revealed various limitations and possible flaws. All these aspects should be discussed. 
+
+% - Computer Vision
+%     - Limited by hyper-parameters
+%     - Improving Shi-Tomasi performance around 90\%, some drawings were corrected manually
+%     - Try other algorithms
+
+Applied "Shi-Tomasi" computer vision algorithm \cite{shi1994good} performed really well during clustering phase, however there is no automatic validation technique for measuring quality of corner detection results. The only option --- is to perform manual visual check of the image. Another possible limitation of the algorithm --- is pre-defined constants for maximum corner number and minimum distance between corners, which potentially narrows usage of the method for other pattern types. Probable solution would require including heuristics before algorithm execution, which evaluates possible values for algorithm constants.
+
+% - Clustering
+%     - great idea
+%     - interpretable features
+%     - any level of detail
+%     - subsequent anomaly detection was derived from 
+
+Most successful design decision during implementation --- is certainly clustering solution architecture. We combined computer vision, object-oriented programming techniques and recursion. Point, Edge and Drawing entities were introduced to describe pattern on different levels of abstraction. Computer vision assisted in splitting Drawing into Edge objects --- meaningful logical parts of the pattern. Every Edge object was recursively divided into connected sub-objects of the same type while preserving references to parent and child entities. Outcome of whole clustering process --- tree-like graph structure of connected pattern segments, represented by Edge objects. Clustering algorithm is capable of processing periodic drawing patterns with relatively positioned and scaled elements, preserves logical structure and describes pattern with arbitrary level of detail. Tree-like graph structure is very flexible for feature generation and interpretation, which helped to produce features with much higher statistical significance, comparing to features obtained from unclustered drawings. Subsequent anomaly detection concept was built on top of existing clustering solution. In general clustering component exceeded initial expectations.
+
+% - Anomalies
+%     - not much anomalies found
+%         - PD and NC don't produce much anomalies
+%         - LSTM hyper parameters
+%         - Tune error threshold
+%         - Anomaly feature extensive engineering
+%             - Anomaly strength
+%             - Anomaly mass
+%         - Try another Independently Recurrent Neural Network (IndRNN) \cite{li2018independently}. In theory, it can process longer sequences and can be stacked into deep neural network models.
+
+Anomaly detection --- is interesting and promising concept, derived from clustering solution, capable of identifying "unseen" or "unexpected" segments of any feature sequence. Sequences were generated with LSTM neural network, utilizing tree-like graph data structure of the Drawing object. As was already mentioned, Anomaly features showed slightly lower significance in comparison with common features obtained from pattern segments. Nevertheless, we can enhance Anomaly feature performance.  For example, set of pre-defined feature sequence types was initially limited and non-kinematic. Results of subsequent analysis showed, that most-performing are common features with kinematic type, therefore changing subset of analyzed feature sequences, may improve significance. Another idea --- every hyper-parameter $C$ for definition of Anomaly threshold $t = C \times MSE$ was determined experimentally. Further tuning of $C$ may enhance feature performance. We may also improve the results by engineering advanced feature types, such as Anomaly strength --- by averaging error value of anomalies within edge, or Anomaly mass --- by summing all obtained Anomaly strength values in the same region. Anomaly detection solution is neural-network based, possible enhancement may be found by applying new network types. For example, recently proposed Independently Recurrent Neural Network \textit{IndRNN} \cite{li2018independently} in theory, can process longer sequences and can be stacked into deep neural network models.
+
+% - Features
+%     - Kinematic approved high significance
+%     - Low significance for
+%         - Altitude, latitude, geometry type
+
+Statistical analysis exposed decent performance of features, derived from certain logical pattern segments with maximum Fisher score around 0.90. Features, derived from whole pattern showed much lower discrimination power with maximum Fisher score around 0.50. This fact again, confirms our assumption, that proposed clustering technique contributes to overall higher significance of generated features. From feature type perspective, most promising --- are kinematic features, which was already stated in multiple research papers. Non-kinematic --- geometry features, pressure, altitude, latitude of stylus revealed their low significance in Parkinson's disease differentiation. 
+
+% - Classifiers
+%     - great result 0.91
+%     - great result even for 3 variables 0.88
+%     - SVM did perform poorly
+%     - Random Forest
+
+During classifier training, we discovered most performing algorithms --- Random forest, AdaBoost and Decision Tree. Interestingly, support vector machine SVM models performed with slightly lower accuracy. This fact is worth investigating in future and possibly conduct experiments with SVM model parameters. Models were validated with K-Fold technique. Normally value of $k = 10$, however considering existing dataset size of $n = 34$ data-points, it was decided to use only $k = 3$ folds. We achieved highest average classification accuracy around 91\% for Random Forest model, trained with $n=30$ top features.
+
+% Most accurate classifier obtained --- Random forest model, trained with 30 features.
+
+% - LIME
+%     - not globally true, but locally
+%     - gives some insight for hidden relations
+%     - should be usable for clinicians
+
+During experimental phase, "Local Interpretable Model-Agnostic Explanations" algorithm was integrated into existing project for explaining individual predictions of obtained classifier. LIME certainly is innovative explanation technique, that explains the predictions of any classifier in an interpretable and faithful manner, still authors warn about undeniable limitations. Generated explanations are not faithful globally, but are faithful only locally around certain predicted datapoint instance. 
+Additionally, there is no objective method for measuring correctness of explanations.
+Nevertheless, this technique, without doubt can reveal hidden relations between instance features and particular classification result with some degree of confidence.
+
+% for chosen classifier model and transform "black box" machine learning system into trustworthy
+

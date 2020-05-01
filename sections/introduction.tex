@@ -1,0 +1,58 @@
+\begin{comment}
+
+% researches suggest\cite{drotar2016evaluation, drotar2015decision, rosenblum2013handwriting}, that handwriting and drawing might serve as a diagnostic biomarker for PD. 
+
+% Main goal of our work is to detect and analyze drawing mistakes within Luria’s alternating series tests of drawing patterns \cite{luria1995higher}, distinguish most significant features, build classification machine learning model and offer mechanism to interpret each individual prediction.
+
+\end{comment}
+
+% About
+% - Parkinson's
+% - hard to diagnose
+% - handwriting biomarker
+% - luria
+
+Significant part of human population suffers from  Parkinson's disease. Recent research confirms, that up to 800 people per 100 000 are affected, which brings Parkinson's disease to the list of most widely spread neurodegenerative disorders. Currently, there is no cure and we don't know particular causes of PD. While disease progresses over time, it severely reduces quality of life for the patient, therefore early diagnosis has obvious high importance. 
+
+Parkinson's disease is complex neurodegenerative disorder which mostly affects human motions. Patients demonstrate variety of symptoms such as tremor, rigidity and slowness in movements (bradykinesia) \cite{moustafa2016motor, smits2014standardized, shukla2012micrographia, drotar2016evaluation}. Handwriting and drawing processes are complex fine motor activities, which require precise coordination of many muscles, hence these processes are mostly disrupted among Parkinson's disease patients. Recent studies \cite{nackaerts2017validity, letanneux2014micrographia, drotar2015decision} endorse drawing and handwriting --- as a proven biomarker for Parkinson's disease. 
+
+While tablet and touch-screen technology is constantly evolving, numerous research studies present their digitized versions of miscellaneous handwriting tests, some of them investigate drawings of circle, star, spiral, clock. Others analyze sentences and character sequences.
+
+Related literature \cite{golden1978diagnostic, nomm2016quantitative} confirms, that "Luria's alternating series fine motor tests" --- is promising technique of disorder level evaluation in complex motion planning and execution processes during handwriting. Luria's tests are already being used in medical community among neurologists and psychologists for several years. From feature type perspective --- kinematic features are most significant in distinguishing between groups of Parkinson's disease patients and healthy controls \cite{pinto2015handwriting, drotar2016evaluation, drotar2015decision}.
+
+Primary goal of present thesis is to conduct analysis of patterns drawn during Luria’s alternating series tests, extract set of interpretable features, containing various kinematic and pressure parameters and develop machine learning model, capable of correct distinguishing between groups of healthy controls and Parkinson’s disease patients.
+
+In present thesis previous knowledge will be applied and extended, by providing a novel methodology for analyzing drawing patterns. Majority of solutions available in the literature are based either on the analysis of entire drawing or individual strokes. \textit{First distinctive feature} of the proposed approach is that it allows to analyze patterns with respect to their logical structure and with any required level of detail.
+
+Computer vision technique is used to split pattern into logical segments and organize unprocessed drawing data into tree-like graph structures. Based on this solution, feature sequences describing different kinematic properties of the drawing are constructed. During next stages, neural-network based models are used to generate feature sequences of the "expected" normal drawing, which allows to expose "unexpected" regions with anomalies. Anomaly detection is \textit{second distinctive feature} of proposed methodology. 
+
+Main outcome of current research is machine learning model of classifier, capable of differentiating Parkinson's disease patients from healthy controls, providing prediction performance around 91\%. Experimental part of the thesis describes \textit{third distinctive feature} --- technique for explaining individual predictions of obtained classifier by applying recently proposed "Local Interpretable Model-Agnostic Explanations" \cite{ribeiro2016should} meta-algorithm.
+
+Thesis is organized as follows. \textit{Chapter 1} consists of problem statement and analysis of related research. \textit{Chapter 2} provides high overview of infrastructure and implementation. \textit{Chapters 2 and 3} describe data pre-processing and clustering. \textit{Chapter 4} defines feature extraction methodologies. \textit{Chapter 5} explains anomaly detection process. \textit{Chapter 7} evaluates feature statistical significance. \textit{Chapter 8} describes classifier model creation methodologies. \textit{Chapter 9} proposes experimental solution for explaining individual predictions of obtained classifier. \textit{Chapters 10 and 11} offer discussion about acquired results and research strategies in future.
+
+% tendency showing movement in direction of different tests digitized versions
+
+
+
+% extend previous research by introducing novel method of drawing pattern analysis 
+
+% Distinction from others
+% - luria patterns are rarely used
+% - existing studies only analyze whole pattern or strokes
+% - logical structure of the pattern is not being taken into account
+% - new clustering solution, relatively positioned and sized pattern elements
+% - pattern transformation into tree-like graph structures
+% - interpretable clusters complimented with parameters
+% - anomaly detection 
+
+% Thesis organized as follows
+% - 
+% - 
+% - 
+
+
+% Main focus of present thesis is to analyze Luria’s drawing patterns of tested individuals, extract interpretable features and produce machine learning model, capable of correct differentiation between groups of healthy controls and Parkinson’s disease patients.
+
+% Luria’s alternating series fine motor tests are being used in psychology and neurology to assess level of disorder in motion planning and execution during handwriting, which is approved biomarker for Parkinson’s disease diagnosis.
+
+% A novel method to analyze Luria’s alternating series patterns drawn during fine motor test constitute main result of the present thesis. Majority of solutions available in the literature are based either on the analysis of entire drawing or individual strokes. Distinctive feature of the proposed approach is that it allows to analyze patterns considering their logical structure with any required level of detail. To achieve this, unique supervised and unsupervised machine learning techniques are applied. Computer vision technique is used to split pattern into logical segments. Based on this information, feature sequences describing different kinematic properties of the drawing are constructed. During next stages, neural-network based models are used to generate feature sequences of the "expected" normal drawing, which allows to highlight "unexpected" regions with anomalies.

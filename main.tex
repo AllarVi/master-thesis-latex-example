@@ -1,0 +1,120 @@
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{comment}
+\usepackage{fancyhdr}
+\usepackage{subfiles}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{lastpage}
+\usepackage[numbers]{natbib}
+\usepackage[nottoc]{tocbibind}
+\usepackage{booktabs}
+\usepackage{caption} 
+\usepackage[ampersand]{easylist}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{longtable}
+
+\usepackage{subcaption}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+\captionsetup[table]{skip=10pt}
+% \usepackage[noxcolor]{beamerarticle}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\graphicspath{{images/}{../images/}{../images/unsorted}}
+\pagestyle{fancy}
+\renewcommand{\baselinestretch}{1.5}
+\bibliographystyle{unsrtnat}
+
+
+\begin{comment}
+
+\usepackage{draftwatermark}
+\SetWatermarkScale{3}
+\SetWatermarkLightness{0.9}
+
+TTU Thesis requirements:
+https://ttu.ee/public/i/infotehnoloogia-teaduskond/Tudengile/Vormid/ITT_loputoode_juhend_EST.pdf
+https://www.sharelatex.com/learn/Sections_and_chapters
+
+\end{comment}
+
+\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true}
+
+\newenvironment{conditions}
+  {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+  {\end{tabular}\par\vspace{\belowdisplayskip}}
+
+\begin{document}
+
+\subfile{sections/title-eng}
+\subfile{sections/title-est}
+\subfile{sections/declaration}
+\subfile{sections/abstract-eng}
+\subfile{sections/abstract-est}
+
+\tableofcontents{}
+\listoffigures
+\listoftables
+
+\chapter{Introduction}
+\subfile{sections/introduction}
+\subfile{sections/luria}
+\subfile{sections/problem-statement}
+\subfile{sections/related-work}
+
+\chapter{Implementation}
+\subfile{sections/implementation}
+
+\chapter{Data pre-processing}
+\subfile{sections/data-preprocessing}
+
+\chapter{Clustering}
+\subfile{sections/clustering}
+
+% \chapter{Features}
+% \subfile{sections/features}
+
+\chapter{Anomaly Detection}
+\subfile{sections/anomaly}
+
+\chapter{Feature Analysis}
+\subfile{sections/feature-analysis}
+
+\chapter{Classifier Training}
+\subfile{sections/classifier}
+
+\chapter{Explaining Predictions}
+\subfile{sections/explanations}
+
+\chapter{Discussion}
+\subfile{sections/discussion}
+
+\chapter{Conclusion}
+\subfile{sections/conclusion}
+
+
+
+\chapter*{Acknowledgments}
+
+I would like to thank my supervisor Sven Nõmm for his encouragement, inspiration and motivation, professor Aaro Toomela for knowledge sharing and collaboration, Kadri Medijainen for collecting patients' data. Last but not the least, I would like to express my deepest gratitude to my friends, family and especially my mother, for unconditional and unfailing support. 
+
+% Thank you for supporting me spiritually throughout writing this thesis and my life in general.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+%\subfile{sections/__presentation}
+
+
+\end{document}

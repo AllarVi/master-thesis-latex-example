@@ -1,0 +1,234 @@
+\begin{comment}
+
+- Data acquisition
+    - Amazon AWS
+    - iPad application
+    
+- Input raw data
+    - Data description
+    - Removing outliers
+    - Pandas dataframe
+
+- Clustering
+    - Corner detection
+        - Transformation to bitmap
+        - Computer vision, detecting corner nodes, edges of the image
+        - Finding corresponding points in the input data set
+        
+    - Creating Tree-Like Graph
+        - Creating Edges 
+        - Creating Sub-Edges recursively
+            - Parent/Child Edges
+            - Creation of the N-depth graph of edges
+            - Calculating features for every edge, on every depth (lazily - only then needed, in runtime)
+                - Geometric
+                - Kinematic
+                - Combing with mean/min/max
+                - Feature naming
+            - Feature naming
+                - Theoretical feature number
+                
+- Anomaly detection and feature transformation
+    - Creating Sequences of features on some arbitrary depth level
+    - Transforming 1D sequence into training data using Sliding Window Method
+        - Predicting next value, using previous values
+    - Training LSTM neural network
+    - LSTM network validation
+    - Generation of Anomaly descriptive features using LSTM
+
+- Building Machine Learning Classifier Models
+
+    - Feature aggregation
+        - Drawing-level features
+        - Edge level features
+        - Drawing Anomaly features
+        - Edge Anomaly features
+        
+    - KFold generation
+    
+    - Feature Statistical Analysis for every fold
+        - T-test
+        - U-test
+        - Spearman correlation coefficient
+        - Fisher score
+        
+    - Training machine learning models
+        - KNN, tree, RF, SVM, AdaBoost
+        - Measuring Model characteristics
+            - Accuracy
+            - Sensitivity (true positive rate) 
+            - Specificity (true negative rate)
+    
+    - Predicting every instance of the data
+        - Lime algorithm
+        
+\end{comment}
+
+\section{Implementation overview}
+
+Proposed implementation consists of several stages, high overview and main aspects are specified in the following list:
+
+\begin{easylist}[enumerate]
+& Data pre-processing
+    && Input data description
+    && Removal of outliers
+    && Creation of the Drawing Entity
+
+& Clustering
+    && Shi-Tomasi algorithm
+    && Edge entity
+    && Improving Drawing Entity, building tree-like graph
+
+& Feature generation
+    && Edge entity feature generation
+    && Drawing entity feature generation
+    && Creating sequences of features
+    
+& Anomaly detection
+    && Transformation of the sequences into training data for neural network
+    && "Sliding window" pre-processor component
+    && LSTM neural network training
+    && Anomaly detection process
+    && Anomaly feature generation
+
+& Feature analysis
+    && Statistical analysis of generated features
+    
+& Classifier Training
+    && Methodology overview
+    && Classifier training and validation
+    && Analysis of trained classifiers
+
+& Individual prediction explanations for obtained classifier with LIME algorithm
+    && LIME background
+    && LIME integration
+    
+\end{easylist}
+
+During initial stage of data pre-processing --- raw input data of iPad drawings will be transformed from transport JSON objects into Python dataframe format and wrapped into Drawing Entities. This approach mostly contributes to flexible and more effective storage and data organization. Additionally, in the intermediate stage of transformation, outliers will be detected and eliminated.
+
+After pre-processing, Drawing will be clustered using combination of computer vision algorithm \cite{shi1994good} and proposed heuristics for periodic pattern drawing data. New Edge Entity will be introduced to describe meaningful, self-explaining and consecutive clusters of the drawing patterns. Edge-type objects will be recursively generated and will form a tree-like graph of the whole Drawing object.
+
+After completion of clustering process, Feature Generation stage will be initiated. Certain set of feature extraction methods will be embedded into Edge Entity and Drawing Entity to effectively compute required features in run-time. Since Drawing-object itself is ordered tree-like graph of Edge-objects, sequences of already computed features will be propagated and utilized during next stage.
+
+We will introduce Anomaly detection algorithm, which should highlight abnormal elements in the sequence of a certain Edge-type feature. To archive this goal, we will transform 1-dimensional time-series sequence of data using Sliding Window method into N-dimensional training dataset to predict next value based on N previous values. Certain type of neural network - LSTM will be trained to reproduce normal sequence of chosen feature, highlight abnormal elements in the sequence and yield collection of Anomaly entities for each Drawing object.
+
+Feature Analysis will be performed to assess significance of generated feature set. We will split our dataset into control and PD populations, compute p-value, Spearman's correlation coefficient and Fisher score for Drawing-, Edge- and Anomaly-type features and will extract subset of features, which are potentially significant in differentiating PD subjects from control group and \textit{vice versa}.
+
+After determination of significant features, we are ready to build machine learning classifier model. Using K-fold algorithm, dataset will be divided into K consecutive folds consisting of training and validation data. In each fold several classifier models will be trained and analyzed. Accuracy, sensitivity and specificity will be measured for each model along with corresponding mean values for set of splits.
+
+Finally, we will apply "Local Interpretable Model-Agnostic Explanations" LIME algorithm \cite{ribeiro2016should} and describe individual predictions within validation dataset in chosen fold, and will reveal hidden relations between features and individual prediction for chosen classifier model.
+
+
+% \begin{figure}
+%   \caption{Creation of the Drawing Entity algorithm}
+%   \centering
+%     \includegraphics[width=0.7\textwidth]{images/alg-drawing.pdf}
+% \end{figure}
+
+
+\section{Infrastructure and Tools}
+
+\begin{comment}
+
+Keywords:
+
+    - Hardware for data acquisition - iPad, iPencil
+    
+    - Client
+        - iOS App, developed by author
+    
+    - Back-end
+        - Amazon AWS
+        - Flask
+        
+    - Analysis tools
+        - PyCharm - for IDE
+        - Python - Language for development
+        - Libraries
+            - Tensorflow, OpenCV, Pandas, Scikit-Learn - machine learning library for Python
+
+\end{comment}
+
+To provide high overview of the infrastructure, software and hardware tools, I would split the the topic into three main clusters: client hardware and software tools, back-end server software, research and development related software.
+
+\subsection{Client Infrastructure and Tools}
+
+\subsubsection{Hardware}
+Apple \textit{iPad Pro} and \textit{Apple Pencil} are crucial hardware components responsible for drawing data acquisition. Tablet has 26.77cm (10.5 inch) diagonal, LED-backlit Multi-Touch display with $2224 \times 1668$ pixels resolution with density of 264 ppi (pixels per inch). The \textit{iPad Pro}  scans the \textit{Apple Pencil's} signal with resolution of 240 points per second, providing twice the data comparing to finger input.
+
+\subsubsection{Software}
+From software perspective --- data was collected using custom iOS application, which itself was developed with Swift programming language and Xcode IDE (integrated development environment). 
+
+Initial implementation of aforementioned client software was initiated in scope of the course ”Startup Project” ITX8549 in Tallinn University of Technology during winter semester in 2016. Author of current thesis was responsible for drawing algorithm and most of UI components of application. 
+
+Application saves acquired drawing data locally in JSON format, and also sends to remote back-end service, if internet connection is available.
+
+\subsection{Back-end Server Infrastructure}
+\subsubsection{Software}
+
+Back-end service was developed using the popular lightweight Python web framework --- Flask. Python library was used to provide REST API for saving drawing data and also to integrate web services with Amazon Simple Storage Service (S3), which itself is file storage with high durability and web interface for data managing. All drawing data in JSON format is being synced to Amazon S3 bucket.
+
+\subsection{Research and development}
+Research, analysis and algorithm implementation was performed using Python programming language and PyCharm IDE. Following open-source Python libraries were extensively used on different stages of the algorithm:
+
+\begin{easylist}[itemize]
+
+& NumPy and Pandas --- for data effective storage and manipulation
+& Matplotlib --- for bitmap conversion and figure plotting
+& OpenCV --- for computer vision algorithms
+& SciPy --- for signal processing, statistical analysis and feature generation
+& Keras with TensorFlow back-end --- for LSTM neural network training
+& Scikit-learn --- for training and validation of numerous classifier models
+& Lime library --- for explaining individual predictions of obtained classifier
+
+\end{easylist}
+
+\section{Data acquisition}
+
+\begin{comment}
+
+(1)
+
+During the digital clock drawing test process, two individuals are involved, one is a patient and another acts as an instructor, who could be the doctor, nurse or any other employee of medical facility.
+The iPad Pro together with an Apple Pencil are provided to the patient, then he is given short instructions about the tests and he may ask any questions about them. The instructor launches our application, enters the patient identification number, which is going to be used afterwards to match the data we have from the iPad application with the patient data provided to us by the clinicians offline.
+After entering the patient identification number, the screen with the test selection is displayed, as shown on figure 2.2. The clinicians might configure this screen to show only certain tests. This screen also shows the progress of the same patient session to make it easier to track completed tests.
+
+After selecting the clock test from the list of tests, or after completing the previous test and clicking the button ”next”, the clock drawing test screen is opened. This is simple empty screen with the buttons ”back” and ”next” on the status bar on the top of the screen. The empty area inside of the screen is for drawing.
+
+Since the clock drawing test is one of the many tests performed during the medical screening not much of the attention is spent on it in particular. The patient is simply asked to draw a clock, he is not asked to draw the exact time.
+
+After the test has been completed and the instructor will trigger the next one, the iPad will check whether the Internet is available and if it is, will convert the drawing data into JSON format and send the it directly to our servers. If the Internet is not available at the moment or if sending the data has failed, the data will be saved in the local storage of the iPad.
+
+Every time the application is opened - it will check whether the Internet is available and if there are any unsynchronised tests, and will try to send them asynchronously in the background, hidden from the person using the application. If because of some reason sending data is not an option, it is possible to extract the data using the XCode application with developer’s provisional profile - which ensures that only the developers of the application has access to data.
+
+(2)
+
+During the completion of the tasks stylus performs on–surface movements, each change of the position of the stylus is registered as a separate event with relevant data – x–axis position, y–axis position, time and pressure. Every registered movement event is essentially a line from a data matrix consisting of n rows and 4 columns, where n is the total amount of movement events produced during a single completion of one task or subtask. Each data matrix is saved separately for further processing as raw data. The process of data flow is depicted in Figure.
+
+(3)
+
+Subjects were rested and seated in front of the table in comfort- able position. Each subject was asked to complete a handwriting task according to the prepared pre-filled template at a comfortable speed. Subjects were allowed to repeat the task in case of some error or mistake during handwriting. The pre-filled template is depicted. The pre-filled template was shown to the subjects; no restrictions about the number of repetitions of syllables/words in tasks or their height were given.
+A tablet was overlaid with an empty paper template (containing only printed lines and square box specifying area for Archimedean spiral), and a special ink pen was held in a normal fashion, allowing for immediate full visual feedback. The signals were recorded using the Intuos 4M (Wacom technology) digitizing tablet.
+
+Digitized signals were acquired during the movements executed while exerting pressure on the writing surface (on-surface movement) and during the movement above the writing surface (in-air movement). The perpendicular pressure exerted on the tablet surface was also recorded. The recordings started when the pen touched the surface of the digitizer and finished when the task was completed. The tablet captured the following dynamic features (time-sequences): x-coordinate, x[t]; y-coordinate, y[t]; time stamp, s[t]; button status, b[t]; pressure, p[t]; and discrete time t. Button status is a binary variable, being 0 for in-air movement and 1 for on-surface movement.
+
+The tablet sampling rate was 100 samples per second; the acquisition software was developed by the research team. Subsequent analysis was performed using Matlab and Python programming language.
+
+\end{comment}
+
+All tested individuals from PD and control groups were asked to complete a set of handwriting tests on iPad tablet, while seating in front of the table in comfortable position. All required meta information --- time of the test, session id, test type --- is recorded automatically. Anonymous subject identification number should be entered manually on initial stage of the test. 
+
+During drawing task, iPad registers all on-surface movements of Apple Pencil with resolution of 240 record samples per second. Each record is a vector-type object, with floating point number fields [x, y, t, p, a, l] and represents immediate state of the digital pencil, where:
+
+\begin{easylist}[itemize]
+
+& x, y --- coordinates
+& t --- time stamp
+& p --- vertical pressure
+& a, l --- altitude and latitude angles
+
+\end{easylist}
+
+Each consecutive on-surface movement can be treated as separate stroke, therefore additional field, which represent stroke number is also saved. Drawing itself is substantially an array of pencil record samples, which on test-completion is transformed into JSON transport object and sent to remote REST service, if internet connection is available. Or stored locally otherwise.
+

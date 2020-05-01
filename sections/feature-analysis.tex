@@ -1,0 +1,176 @@
+\section{Dataset Description}
+
+% + Drawing 29, Edge 872, Anomalies 176
+% + how many for each class
+% + Luria P, copy
+% + PD / Controls 17 / 17
+
+Subjects of both classes, with Parkinson's disease \textit{PD} and healthy controls \textit{HC} participated in research. It was totally $n_{pd} = 17$ individuals with Parkinson's disease and equal number $n_{hc} = 17$ of healthy controls, which gives total number of $n = 34$ participants.
+
+Handwriting data was recorded for series of \textit{Luria} and other \textit{non-Luria} types of tests. Combination of three Luria patterns \textit{['Sinus', 'P', 'PL']} and three task types \textit{[continue, copy, trace]} results in series of 9 different tests. To reduce complexity and the scope of research, dataset with only \textit{one particular test} was analyzed: copy task with 'P' pattern --- or \textit{[Luria 'P' copy]}. 
+
+From preceding phases of the algorithm, it was evaluated totally $n = 1077$ numeric features, which are distributed among three major classes:
+
+    \begin{easylist}[itemize]
+    & \textit{Drawing-related} --- total $n = 29$ aggregated higher-order features, recursively extracted from underlying \textit{Edge} and \textit{Anomaly} entities, describe particular instance of \textit{Luria} pattern, or \textit{Drawing} entity in general. 
+    
+    & \textit{Edge-related} --- total $n = 872$ numeric features, describe particular logical part of Luria pattern, i.e, \textit{Edge} entity of the \textit{Drawing} instance.
+    
+    & \textit{Anomaly-related} --- total $n = 176$ numeric features, reveal number of  \textit{Anomalies} of different types inside particular \textit{Edge} or complete \textit{Drawing} instance.
+
+\end{easylist}
+
+\section{Statistical Analysis}
+
+It was decided to apply one of the most widely used supervised feature selection methods --- \textit{Fisher scoring method} \cite{aggarwal2015data, duda2012pattern}. 
+
+\textit{Fisher score} for each feature was calculated using (\ref{fisher}), where $\mu_j$ and $\sigma_j$ -- are the \textit{mean} and \textit{standard deviation} of the data points in the class $j \in [pd, hc]$ for current feature, $p_j$ -- is the fraction of data points in the class $j$ and $\mu$ -- is the global \textit{mean} of the feature. The larger the Fisher score, the greater the discriminatory potential of particular feature. To evaluate the results, Python function \textit{fisher\_score()} from \textit{Skfeature} library was used.
+
+\begin{equation}
+\label{fisher}
+  F = \frac{\sum_{j=1}^{k} p_j(\mu_j - \mu)^2}{\sum_{j=1}^{k} p_j\sigma_j^2}
+\end{equation}
+
+Along with proposed \textit{Fisher} scoring method, additional metrics were added for feature statistical analysis and selection decision logic:
+
+\begin{easylist}
+
+& Two-sample $t$-test --- to reject \textit{null hypothesis} and determine if datasets are  differ significantly from each other. In current context, \textit{null hypothesis} --- is that the samples representing HC and PD subjects belong to the independent populations with \textit{equal} means. \textit{Alternative hypothesis} --- samples representing HC and PD subjects originate from the populations with \textit{unequal} means, hence there is significant difference between datasets. 
+
+Standard \textit{Scipy} function \textit{ttest\_ind()} was utilized to perform $T$-test. Function produces tuple of $p$-value and $t$-statistics as output. Features with high $p$-value $p > 0.05$ were automatically filtered out and were not used in subsequent classifier training.
+
+& Spearman's Correlation Coefficient --- $\rho$ was adopted to additionally validate \textit{Fisher Scoring method}, by evaluating absolute correlation $|\rho|$ to dataset class numeric values \textit{[PD = 1.0, HC = 0.0]}. Python function \textit{spearmanr()} from \textit{Scipy} library was used to evaluate the results.
+
+\end{easylist}
+
+
+% - null hypothesis
+% - student test
+% - ttest, p-value for filtering
+
+% Fisher score is one of the most widely used supervised feature selection methods. However, it selects each feature independently according to their scores under the Fisher criterion, which leads to a suboptimal subset of features. In this paper, we present a generalized Fisher score to jointly select features. It aims at finding an subset of features, which maximize the lower bound of traditional Fisher score. The resulting feature selection problem is a mixed integer programming, which can be reformulated as a quadratically constrained linear programming (QCLP). It is solved by cutting plane algorithm, in each iteration of which a multiple kernel learning problem is solved alternatively by multivariate ridge regression and projected gradient descent. Experiments on benchmark data sets indicate that the proposed method outperforms Fisher score as well as many other state-of-the-art feature selection methods.
+
+\section{Feature Analysis Results}
+
+\subsection{Drawing Features}
+
+Higher-order \textit{Drawing} features provide information about particular instance of Luria pattern in general. Totally 97\% of $n=29$ features from current cluster passed $t$-test with significance level set to $\alpha = 0.05$. 
+
+Top performing drawing features are determined by Fisher score and listed in Table \ref{stat-drawing}. According to the list, most significant of them --- \textit{drawing\_acceleration\_mean, drawing\_jerk\_mean, drawing\_velocity\_mean}, i.e, average acceleration, jerk and velocity of whole drawing. Highest Fisher score $F =0.50$ was observed for \textit{drawing\_acceleration\_mean}. These results are predictable, since kinematic features usually provide great discrimination power between groups of HC and PD \cite{raudmann2014handwriting, letanneux2014micrographia, pinto2015handwriting}, also our dataset confirms that subjects from PD population in average, perform drawing tasks 2-3 times slower, than healthy controls of the same age group.
+
+Interestingly, that \textit{drawing\_acceleration\_nc, drawing\_velocity\_nc, drawing\_pressure\_nc} also received high Fisher score. These features stand for total \textit{number of changes} in acceleration, velocity and pressure during drawing test, and can, in theory, represent \textit{tremor} --- one of the primary symptoms of Parkinson's disease.
+
+\sisetup{table-number-alignment=center, exponent-product=\cdot}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}
+        {l*{1}{S[table-format=1.4]}
+        *{1}{S[table-format=1.2]}
+        *{1}{S[table-format=1.2e-2]}
+        *{1}{S[table-format=-2.2]}}
+        
+    \toprule
+    Feature Name &  {\textit{Fisher} score} & {$|\rho|$} & {\textit{p}-value} &  {\textit{t}-stat} \\
+    \midrule
+  drawing\_acceleration\_mean &  0.5025 &  0.65 &  2.56e-11 &   9.82 \\
+          drawing\_jerk\_mean &  0.4415 &  0.63 &  3.42e-10 &   8.82 \\
+      drawing\_velocity\_mean &  0.4071 &  0.64 &  1.67e-11 &   9.99 \\
+         drawing\_slope\_mass &  0.3555 &  0.57 &  1.37e-13 &  12.01 \\
+    drawing\_acceleration\_nc &  0.3372 &  0.64 &  6.29e-06 &   5.36 \\
+        drawing\_velocity\_nc &  0.3333 &  0.64 &  1.46e-05 &   5.08 \\
+            drawing\_jerk\_nc &  0.3313 &  0.64 &  3.80e-06 &   5.54 \\
+        drawing\_pressure\_nc &  0.3261 &  0.63 &  3.96e-09 &   7.92 \\
+          drawing\_duration &  0.3149 &  0.59 &  2.26e-08 &   7.29 \\
+  anomalies\_drawing\_length &  0.2021 &  0.38 &  3.68e-08 &   7.12 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textit{Drawing} features --- Statistical Analysis}\label{stat-drawing}
+\end{table}
+
+\subsection{Edge Features}
+
+\textit{Edge} features describe particular logical part of Luria pattern, i.e, \textit{Edge} entity of the \textit{Drawing} instance. Totally 78\% of $n=872$ features from current cluster passed $t$-test with significance level set to $\alpha = 0.05$. 
+Highest observed Fisher score $F=0.90$ received feature \textit{edge\_03\_speed}, i.e, linear speed of third edge of the drawing, which means, that speed within particular segment of the pattern provides much higher discrimination potential, than any kinematic feature of full drawing ($F=0.50$ was observed for \textit{drawing\_acceleration\_mean}). 
+
+Highest Fisher scores, received \textit{kinematic} feature set of different edges, identified by index $i$. Top non-kinematic feature with Fisher score $F=0.46$ is \textit{edge\_14\_pressure\_nc}, i.e, number of changes in pressure within edge with index $i = 14$. Corresponding higher-order feature \textit{drawing\_pressure\_nc} obtained much lower score of $F=0.33$
+
+Aforementioned numbers demonstrate, what proposed clustering technique with concepts of \textit{Edge} entity and tree-like \textit{graph} structure contribute to overall higher significance of generated features. Top $n=10$ \textit{Edge} features are presented in following Table \ref{stat-edges}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}
+        {l*{1}{S[table-format=1.4]}
+        *{1}{S[table-format=1.2]}
+        *{1}{S[table-format=1.2e-2]}
+        *{1}{S[table-format=-2.2]}}
+        
+    \toprule
+    Feature Name &  {\textit{Fisher} score} & {$|\rho|$} & {\textit{p}-value} &  {\textit{t}-stat} \\
+    \midrule
+             edge\_03\_speed &  0.9000 &  0.71 &  6.11e-10 &   8.60 \\
+     edge\_15\_velocity\_mean &  0.7802 &  0.73 &  1.12e-09 &   8.38 \\
+             edge\_13\_speed &  0.7649 &  0.74 &  1.51e-11 &  10.03 \\
+     edge\_03\_velocity\_mean &  0.7591 &  0.69 &  6.70e-10 &   8.57 \\
+ edge\_15\_acceleration\_mean &  0.7464 &  0.73 &  4.87e-09 &   7.84 \\
+         edge\_15\_jerk\_mean &  0.7442 &  0.70 &  3.40e-08 &   7.15 \\
+ edge\_03\_acceleration\_mean &  0.6709 &  0.67 &  2.06e-09 &   8.15 \\
+     edge\_11\_velocity\_mean &  0.6662 &  0.68 &  2.00e-10 &   9.02 \\
+             edge\_14\_speed &  0.6050 &  0.64 &  4.35e-10 &   8.73 \\
+ edge\_11\_acceleration\_mean &  0.5998 &  0.67 &  5.14e-10 &   8.67 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textit{Edge} features --- Statistical Analysis}\label{stat-edges}
+
+\end{table}
+
+\subsection{Anomaly Features}
+
+Anomaly features represent number of observed \textit{Anomalies} of different types inside particular \textit{Edge} or complete \textit{Drawing} instance. Totally 42\% of $n=176$ features from current cluster passed $t$-test with significance level set to $\alpha = 0.05$. Highest Fisher score $F=0.20$ was observed for \textit{anomalies\_drawing\_length}, i.e, number of length anomalies in the whole drawing.
+Anomaly features in Table \ref{stat-anomaly}, in general, demonstrate lower Fisher score in comparison with other feature clusters. Possible aspects and future improvement ideas may include:
+
+\begin{easylist}
+
+& \textit{Sequence Types} --- set of analyzed feature-sequence types was pre-defined intuitively and consisted of only \textit{[angle, pressure, length, duration, longitude, latitude]} types. Results of prior analysis \textit{(Tables \ref{stat-drawing} and \ref{stat-edges})} confirm, that most-performing are \textit{kinematic} feature-types, hence changing subset of types to \textit{kinematic} may, in theory, improve significance of \textit{Anomaly} features. 
+
+& \textit{Error Threshold} --- every hyper-parameter $C$ for definition of \textit{Anomaly} threshold $t = C \times MSE$ was determined experimentally. Further tuning of $C$ may enhance feature performance.
+
+& \textit{Feature Engineering} --- we may improve the results by engineering advanced feature types --- Anomaly \textit{strength}, i.e, average error value of anomalies within segment. It is also feasible to sum all errors and obtain Anomaly \textit{mass}. 
+
+% 
+% 
+% 
+% Important --- Anomaly MASS
+% 
+% 
+% 
+
+\end{easylist}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}
+        {l*{1}{S[table-format=1.4]}
+        *{1}{S[table-format=1.2]}
+        *{1}{S[table-format=1.2e-2]}
+        *{1}{S[table-format=-2.2]}}
+        
+    \toprule
+    Feature Name &  {\textit{Fisher} score} & {$|\rho|$} & {\textit{p}-value} &  {\textit{t}-stat} \\
+    \midrule
+       anomalies\_drawing\_length &  0.2021 &  0.38 &  3.68e-08 &   7.12 \\
+     anomalies\_edge\_25\_pressure &  0.0891 &  0.31 &  2.24e-02 &  -2.34 \\
+       anomalies\_edge\_11\_length &  0.0695 &  0.14 &  2.38e-03 &   3.28 \\
+     anomalies\_edge\_07\_latitude &  0.0667 &  0.25 &  3.58e-02 &  -2.15 \\
+     anomalies\_edge\_04\_pressure &  0.0592 &  0.25 &  3.46e-04 &  -3.79 \\
+     anomalies\_edge\_03\_pressure &  0.0519 &  0.25 &  3.64e-03 &  -3.02 \\
+        anomalies\_drawing\_angle &  0.0514 &  0.21 &  4.06e-05 &   4.73 \\
+    %  anomalies\_drawing\_duration &  0.0469 &  0.23 &  8.56e-07 &   6.04 \\
+    %  anomalies\_edge\_00\_latitude &  0.0463 &  0.20 &  1.30e-10 &   8.78 \\
+    %  anomalies\_edge\_24\_duration &  0.0441 &  0.19 &  3.07e-03 &  -3.08 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textit{Anomaly} features --- Statistical Analysis}\label{stat-anomaly}
+
+\end{table}
+

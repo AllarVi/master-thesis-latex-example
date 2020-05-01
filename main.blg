@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Illegal, another \bibstyle command---line 209 of file main.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Database file #1: references.bib
+Warning--empty chapter and pages in luria1995higher
+Warning--can't use both volume and number fields in harris1988combined
+You've used 40 entries,
+            2481 wiz_defined-function locations,
+            783 strings with 13309 characters,
+and the built_in function-call counts, 17884 in all, are:
+= -- 1422
+> -- 1134
+< -- 24
++ -- 424
+- -- 342
+* -- 1484
+:= -- 2878
+add.period$ -- 129
+call.type$ -- 40
+change.case$ -- 78
+chr.to.int$ -- 38
+cite$ -- 42
+duplicate$ -- 861
+empty$ -- 1535
+format.name$ -- 391
+if$ -- 3791
+int.to.chr$ -- 3
+int.to.str$ -- 41
+missing$ -- 41
+newline$ -- 207
+num.names$ -- 120
+pop$ -- 363
+preamble$ -- 1
+purify$ -- 40
+quote$ -- 0
+skip$ -- 503
+stack$ -- 0
+substring$ -- 816
+swap$ -- 178
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 268
+warning$ -- 2
+while$ -- 144
+width$ -- 0
+write$ -- 531
+(There was 1 error message)

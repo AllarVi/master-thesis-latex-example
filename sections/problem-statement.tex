@@ -1,0 +1,93 @@
+\section{Problem statement}
+
+Statistical evidence suggests that 7 to 10 million people worldwide are living with Parkinson’s disease, which makes it one of most widely spread neurodegenerative disorders. Current medicine doesn't offer complete cure, however early diagnosis may significantly improve quality of life for the patients. Several studies suggest \cite{drotar2016evaluation, drotar2015decision, rosenblum2013handwriting}, that handwriting might serve as biomarker for Parkinson’s disease.  One of the most promising handwriting evaluation technique --- is "Luria’s alternating series tests". Technique is already adopted by medical community and is being used among psychologists and neurologists for several years. Other various kinds of digitized drawing and handwriting tests are described and analyzed in the literature. However detailed and complete analysis of Luria's alternating series tests is still missing.
+
+Present thesis is a part of bigger research series in Tallinn University of Technology, Tallinn University and University of Tartu, which investigates human handwriting and already consists of two master theses. First work offers quantitative analysis of kinematic features for Luria's tests and is clearly a foundation for present research \cite{kozhenkina2016luria}. Thesis introduces initial prototype of application for recording handwriting data. Similarly, second work \cite{masarov2017clock} proposes next prototype of application and analyzes "Clock Drawing Test". Both share same methodology and conduct quantitative analysis of kinematic features, extracted from collected drawings. 
+
+Both theses miss essential part and don't offer any machine learning classifiers, which capable of differentiation Parkinson's disease patients from healthy controls. Therefore proposed solutions cannot be adopted by clinicians. 
+
+Other studies, however, do offer classification models \cite{drotar2016evaluation, san2016digitized, pereira2016deep, aghanavesi2017smartphone} with various accuracy rates. Majority of solutions available in the literature are based either on the analysis of entire drawing or individual strokes, namely --- logical structure of the drawings is not taken into account, which is another possible gap. Additional important aspect should also be considered, which is trust. Among medical society black-box type machine learning systems are not considered trustworthy, therefore not widely used. Reasoning and decision tracing for each individual prediction is yet another area for research and development.
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+To wrap up above aspects, we can formulate following list of problems in previous and ongoing research:
+
+\begin{easylist}
+
+& Detailed and complete analysis of "Luria's alternating series tests" technique is not present in current literature. 
+
+& Prevailing studies do not analyze separate logical parts of the drawing shapes.
+
+& None of present studies offer anomaly detection and analysis within drawn shapes, which can be derived from previous point.
+
+& Most of the proposed solutions lack of machine learning classification part, classification models are not being analyzed.
+
+& Solutions with machine learning classifiers do not offer high accuracy rate.
+
+& Clinicians do not trust machine learning systems, due to "black box" nature of underlying algorithms.
+
+& None of the present studies offer prediction reasoning or decision tracing for Parkinson's disease classification.
+
+\end{easylist}
+
+\vspace{1cm}
+
+Present thesis extends previous and ongoing research and offers solutions to aforestated problems, by providing \textit{novel}, more detailed technique for drawing patterns analysis. Thesis objectives are formulated as follows:
+
+\begin{easylist}
+
+& \textit{Detailed analysis} of patterns drawn during \textit{Luria’s alternating series tests}
+&& \textit{Pre-processing} of drawing data, outlier and noise removal.
+&& \textit{Advanced clustering solution} for extraction of logical elements of the drawing patterns with arbitrary level of detail.
+&& \textit{Interpretable feature} extraction.
+&& \textit{Anomaly detection}.
+&& \textit{Statistical analysis} of obtained feature set.
+&& Development of \textit{machine learning classifier}, capable of precise differentiation between groups of healthy controls and Parkinson’s disease patients.
+& \textit{Solution} for \textit{prediction explanation} and decision tracing technique of obtained classifier model.
+
+\end{easylist}
+
+
+\begin{comment}
+
+    With respect to all previously mentioned aspects, it is possible to define scope of the problem current thesis addresses: complete and detailed analysis of patterns drawn during Luria’s alternating series tests, extract interpretable feature set and develop machine learning model, capable of correct differentiation between groups of healthy controls and Parkinson’s disease patients.
+    
+    
+    
+    
+    
+    Present thesis offers solution to aforementioned problems. 
+    
+    Primary goal of present thesis is to conduct detailed analysis of patterns drawn during Luria’s alternating series tests, extract interpretable feature set and develop machine learning model, capable of correct differentiation between groups of healthy controls and Parkinson’s disease patients.
+    
+    Main objective of current thesis is to introduce human-understandable novel anomaly-type features for "Luria’s alternating series tests", build machine learning model capable of accurate differentiation between Parkinson's disease patients and also method providing traceability of each individual prediction by applying LIME algorithm \cite{ribeiro2016should}, which should transform untrustworthy classification model into a trustworthy one.
+    
+    We will combine different ML models to filter outliers, split raw data into meaningful clusters using computer vision algorithms, analyze and extract features of each cluster to detect drawing mistakes, build composite classification models using random forest and neural networks and finally will interpret each individual prediction while following main steps:
+    
+    % The main gap with current approaches, is what they cannot give any understandable feedback to medical personnel. It is surely possible to create binary classifier with numeric feature set. For example we can use random forest or neural network to complete such task. The model will detect unhealthy individuals with some acceptable precision rate. However, we cannot clearly evaluate such "black box" models because of their hidden structure.
+    
+    % Despite widespread adoption, machine learning models remain mostly black boxes. Understanding the reasons behind predictions is, however, quite important in assessing trust, which is fundamental if one plans to take action based on a prediction, or when choosing whether to deploy a new model. Such understanding also provides insights into the model, which can be used to transform an untrustworthy model or prediction into a trustworthy one.
+    
+    
+    \begin{easylist}[itemize]
+    
+    % & \textbf{Acquiring dataset} - drawings of PD patients and controls from previous research is available, also iOS application for iPad Pro is in active development stage. Recording session in local hospitals are scheduled in nearest future.
+    
+    % & \textbf{Pre-processing data} - Recorded dataset from iPad tablet consists of $x$, $y$ coordinates, pressure $p$, azimuth and altitude angles of the pencil and time stamp $t$. Coordinate units $x$, $y$ and pressure $p$ are device-specific and don't give adequate characteristics of the drawing, therefore we need to convert all data records to physical units. Removing outliers, data noise along with obvious faulty input will be filtered \cite{lee2008trajectory}.
+    
+    % & \textbf{Defining scope of mistakes} - there is a wide range of possibilities, and we should choose certain mistake types to implement. Potential set of mistakes will be: Geometry distortion-type drawing mistakes, skewness of drawing/segment, decline/increase in the amplitude of pattern, angle of upper and lower boundaries of the drawing/segment, rotation distortion, completeness of drawing/segment, anomalies in time series.
+    
+    % & \textbf{Building of the models}
+    % && During implementation of geometry distortion-type mistakes detection algorithm, common trigonometry rules and Euclidean distances would be used, along with common techniques of clustering such as $K$-means, density-based scanning and hierarchical clustering. Some concepts and inspiration would be taken from relevant research paper \cite{hammond2011recognizing}.
+    
+    % && During implementation of computed kinematic-based and pressure-based mistakes detection model, similar algorithm described in research paper \cite{nomm2016recognition}, would be reproduced and improved. Model would base on combination of popular ML algorithms, such as $K$-means clustering, $k$-nearest neighbors and random forest RF.
+    
+    & \textbf{Assessment of statistical significance} - following question will be answered: do generated features provide statistically significant differentiation between groups of healthy individuals and Parkinson's disease patients?
+    
+    & \textbf{Composite model building and validation} - complex decision making Machine Learning algorithm will be developed based on all possible and acquired mistake-type features, kinematic and pressure parameters. To overcome and even benefit from high dimensionality training data, \textit{XGBoost  Scalable Tree Boosting} \cite{chen2016xgboost} algorithm will be applied during model building process.
+    
+    & \textbf{Interpretation of the models} - "Local Interpretable Model-Agnostic Explanations" LIME algorithm \cite{ribeiro2016should} will be used to describe each individual prediction and SP-LIME algorithm will be applied, revealing hidden relations between features inside our classifier.
+    
+    \end{easylist}
+
+\end{comment}

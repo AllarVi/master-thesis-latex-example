@@ -1,0 +1,26 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Luria pattern types --- \textit {sinus} pattern, \textit {'P'} pattern, \textit {'PL'} pattern\relax }}{10}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces JSON to Drawing Entity Conversion --- Flow Diagram\relax }}{25}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Luria Pattern --- Single Sample\relax }}{26}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Luria Pattern --- Multiple Samples Combined\relax }}{27}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Clustering --- Set of Points to Grayscale Image Conversion\relax }}{30}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Clustering --- Detected Corner Nodes\relax }}{31}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Clustering --- Recursively Generated Edges with depth level $d = 1$, $d = 2$, $d = 3$\relax }}{32}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Clustering --- \textit {Drawing} object transformed into \textit {tree-like graph} of \textit {Edge} objects with depth level $d = 3$\relax }}{33}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Clustering of the \textit {Drawing} entity --- Flow Diagram\relax }}{36}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces \textit {LSTM Model} Training --- Flow Diagram\relax }}{40}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Anomaly Detection Process --- Flow Diagram\relax }}{44}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Anomaly Detection --- Example Output\relax }}{45}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Decision Boundaries for PD Classifiers: $x$-axis --- linear speed of third edge of the drawing, $y$-axis --- average acceleration of the drawing. Healthy controls \textit {HC} instances are marked with \textit {yellow} dots.\relax }}{56}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Decision Boundaries for PD Classifiers: $x$-axis --- linear speed of third edge of the drawing, $y$-axis --- number of length anomalies in the drawing. Healthy controls \textit {HC} instances are marked with \textit {yellow} dots.\relax }}{57}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Decision Boundaries for PD Classifiers: $x$-axis --- number of length anomalies in the drawing, $y$-axis --- average acceleration of the drawing. Healthy controls \textit {HC} instances are marked with \textit {yellow} dots.\relax }}{57}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Dataset of subjects (\textit {HC} --- \textit {yellow}, PD --- \textit {blue}) in 3D feature-space: $X$-axis --- linear speed of third edge of the drawing, $Y$-axis --- number of length anomalies in the drawing, $Z$-axis --- average acceleration of the drawing.\relax }}{58}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
